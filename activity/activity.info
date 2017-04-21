@@ -1,0 +1,8 @@
+[Activity]
+name = NES
+activity_version = 1
+service_name = org.laptop.wiki.nesactivity
+class = main.NES
+icon = activity-icon
+mime_types =
+

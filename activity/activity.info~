@@ -1,0 +1,8 @@
+[Activity]
+name = TuxNES
+activity_version = 1
+service_name = com.eepthan.nes
+class = leerpendrive.LeerPendrive
+icon = activity-icon
+mime_types =
+

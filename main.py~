@@ -1,0 +1,44 @@
+#! /usr/bin/env python
+
+from sugar.activity import activity
+import sys, os, subprocess
+import gtk, gobject
+import logging
+
+class NES(activity.Activity):
+
+	def __init__(self, handle):
+
+		activity.Activity.__init__(self, handle)
+
+		toolbox = activity.ActivityToolbox(self)
+		self.set_toolbox(toolbox)
+		toolbox.show()
+		toolbox.get_activity_toolbar().share.hide()
+		toolbox.get_activity_toolbar().keep.hide()
+		self._filechooser = gtk.FileChooserWidget(\
+			action=gtk.FILE_CHOOSER_ACTION_OPEN,backend=None)
+		self._filechooser.set_current_folder("/")
+		self.botonCopiar = gtk.Button("Play Game")
+		self.botonCopiar.connect('clicked', self._boton_apretado)
+		self.botonCopiar.show ()
+		self._filechooser.set_extra_widget(self.botonCopiar)
+
+		self.set_canvas(self._filechooser)
+		self.show_all()
+
+
+	def _boton_apretado(self, widget, data=None):
+
+		archivo = self._filechooser.get_filename()
+		#socket = gtk.Socket()
+		#socket.show()
+		#self.set_canvas(socket)
+		#self.show_all()
+
+		#xid=socket.get_id()
+
+
+		cmd = [ "/home/olpc/Activities/NES.activity/tuxnes-bin", "--enlarge=2.5", archivo]
+                subprocess.Popen(cmd)
+
